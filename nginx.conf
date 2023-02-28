@@ -1,11 +1,11 @@
 #!/bin/bash
 
 cd ~
-sudo yum install -y nginx
+sudo yum install nginx -y
 sudo systemctl start nginx
 sudo systemctl enable nginx
 sudo git clone https://github.com/Tonybesto/TCS-Project-Configuration.git
-sudo cp RCR-Project-Configuration/reverseProxy.conf /etc/nginx/
+sudo cp TCS-Project-Configuration/reverseProxy.conf /etc/nginx/
 sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-distro
 cd /etc/nginx/
 sudo touch nginx.conf
