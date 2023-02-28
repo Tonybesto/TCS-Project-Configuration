@@ -10,28 +10,28 @@
 
 
 # Bastion AMI Installation
-#
-yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+```
+sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
-yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+sudo yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
-yum install wget vim python3 telnet htop git mysql net-tools chrony -y
+sudo yum install wget vim python3 telnet htop git mysql net-tools chrony -y
 
-systemctl start chronyd
+sudo systemctl start chronyd
 
-systemctl enable chronyd
-#
+sudo systemctl enable chronyd
+```
 # Nginx AMI Installation 
 ```
-yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
-yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+sudo yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
-yum install wget vim python3 telnet htop git mysql net-tools chrony -y
+sudo yum install wget vim python3 telnet htop git mysql net-tools chrony -y
 
-systemctl start chronyd
+sudo systemctl start chronyd
 
-systemctl enable chronyd
+sudo systemctl enable chronyd
 ```
 ## Configure Selinux Policies For the Webservers and Nginx Servers
 ```
@@ -46,13 +46,13 @@ git clone https://github.com/aws/efs-utils
 
 cd efs-utils
 
-yum install -y make
+sudo yum install -y make
 
-yum install -y rpm-build
+sudo yum install -y rpm-build
 
-make rpm 
+sudo make rpm 
 
-yum install -y  ./build/amazon-efs-utils*rpm
+sudo yum install -y  ./build/amazon-efs-utils*rpm
 ```
 ### Seting up self-signed certificate for the Nginx instance
 ```
@@ -60,7 +60,7 @@ sudo mkdir /etc/ssl/private
 
 sudo chmod 700 /etc/ssl/private
 
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ACS.key -out /etc/ssl/certs/ACS.crt
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/TCS.key -out /etc/ssl/certs/TCS.crt
 
 sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 ```
@@ -68,15 +68,15 @@ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 
 # Webserver AMI Installation 
 ```
-yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
-yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+sudo yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
-yum install wget vim python3 telnet htop git mysql net-tools chrony -y
+sudo yum install wget vim python3 telnet htop git mysql net-tools chrony -y
 
-systemctl start chronyd
+sudo systemctl start chronyd
 
-systemctl enable chronyd
+sudo systemctl enable chronyd
 ```
 ## Configure Selinux Policies for the Webservers and Nginx Servers
 ```
@@ -91,20 +91,20 @@ git clone https://github.com/aws/efs-utils
 
 cd efs-utils
 
-yum install -y make
+sudo yum install -y make
 
-yum install -y rpm-build
+sudo yum install -y rpm-build
 
-make rpm 
+sudo make rpm 
 
-yum install -y  ./build/amazon-efs-utils*rpm
+sudo yum install -y  ./build/amazon-efs-utils*rpm
 ```
 
 ## Seting up Self-Signed Certificate for the Apache Webserver Instance
 ```
 yum install -y mod_ssl
 
-openssl req -newkey rsa:2048 -nodes -keyout /etc/pki/tls/private/ACS.key -x509 -days 365 -out /etc/pki/tls/certs/ACS.crt
+openssl req -newkey rsa:2048 -nodes -keyout /etc/pki/tls/private/TCS.key -x509 -days 365 -out /etc/pki/tls/certs/TCS.crt
 
 vi /etc/httpd/conf.d/ssl.conf
 ```
@@ -113,7 +113,7 @@ vi /etc/httpd/conf.d/ssl.conf
 
 
 # Login into the RDS instance and create  database for wordpress and tooling wordpress and tooling database
-mysql -h acs-database.cdqpbjkethv0.us-east-1.rds.amazonaws.com -u ACSadmin -p 
+mysql -h tcs-database.cdqpbjkethv0.us-east-1.rds.amazonaws.com -u TCSadmin -p 
 
 CREATE DATABASE toolingdb;
 CREATE DATABASE wordpressdb;
