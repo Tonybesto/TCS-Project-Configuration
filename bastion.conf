@@ -1,4 +1,5 @@
 #!/bin/bash 
-yum install -y mysql 
-yum install -y git tmux 
-yum install -y ansible
+sudo yum install mysql -y
+sudo yum install git -y
+sudo yum install tmux -y  
+sudo yum install ansible -y
