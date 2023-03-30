@@ -102,7 +102,7 @@ sudo yum install -y  ./build/amazon-efs-utils*rpm
 
 ## Seting up Self-Signed Certificate for the Apache Webserver Instance
 ```
-yum install -y mod_ssl
+sudo yum install -y mod_ssl
 
 openssl req -newkey rsa:2048 -nodes -keyout /etc/pki/tls/private/TCS.key -x509 -days 365 -out /etc/pki/tls/certs/TCS.crt
 
